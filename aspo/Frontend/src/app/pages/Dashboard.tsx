@@ -38,7 +38,7 @@ export default function Dashboard() {
       }
 
       // 2. Get Tasks & Analytics
-      const tasksRes = await fetch('/api/tasks', { headers });
+      const tasksRes = await fetch(`${API_BASE_URL}/api/tasks`, { headers });
       const tasksData = await tasksRes.json();
 
       if(tasksRes.ok) {
@@ -54,7 +54,7 @@ export default function Dashboard() {
       }
       
       // 3. Get Analytics for Progress Bar
-      const analyticsRes = await fetch('/api/study-plan/analytics', { headers });
+      const analyticsRes = await fetch(`${API_BASE_URL}/api/study-plan/analytics`, { headers });
       const analyticsData = await analyticsRes.json();
       if(analyticsData.success) {
         setProgress(analyticsData.data.completionRate || 0);
@@ -67,7 +67,7 @@ export default function Dashboard() {
 
   const toggleTask = async (id: string) => {
     try {
-      await fetch(`/api/tasks/${id}/complete`, {
+      await fetch(`${API_BASE_URL}/api/tasks/${id}/complete`, {
         method: 'PATCH',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -79,7 +79,7 @@ export default function Dashboard() {
       );
 
       const headers = { Authorization: `Bearer ${token}` };
-      const analyticsRes = await fetch('/api/study-plan/analytics', { headers });
+      const analyticsRes = await fetch(`${API_BASE_URL}/api/study-plan/analytics`, { headers });
       const analyticsData = await analyticsRes.json();
       if(analyticsData.success) {
         setProgress(analyticsData.data.completionRate || 0);
