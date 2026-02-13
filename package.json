@@ -1,0 +1,14 @@
+{
+  "name": "ai-study-planner",
+  "version": "1.0.0",
+  "description": "AI Study Planner - Root Project",
+  "scripts": {
+    "install-all": "npm install --prefix aspo/Backend && npm install --prefix aspo/Frontend",
+    "backend": "npm start --prefix aspo/Backend",
+    "frontend": "npm run dev --prefix aspo/Frontend",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
