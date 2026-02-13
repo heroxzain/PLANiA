@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Calendar, CheckCircle2, TrendingUp } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import API_BASE_URL from '../../config';
 
 
 export default function Dashboard() {
@@ -23,7 +24,7 @@ export default function Dashboard() {
       const headers = { Authorization: `Bearer ${token}` };
 
       // 1. Get Weekly Plan
-      const planRes = await fetch('/api/study-plan', { headers });
+      const planRes = await fetch(`${API_BASE_URL}/api/study-plan`, { headers });
       const planData = await planRes.json();
       
       if (planData.success) {

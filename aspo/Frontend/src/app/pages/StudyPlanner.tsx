@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Footer from '../components/Footer';
 import { Home, BookOpen, Plus, Trash2, Edit, AlertCircle, CheckCircle } from 'lucide-react';
+import API_BASE_URL from '../../config';
 
 type ActionType = 'none' | 'add' | 'update' | 'remove';
 
@@ -114,7 +115,7 @@ export default function StudyPlanner() {
   };
 
   const handleGeneratePlan = async () => {
-    const response = await fetch('/api/study-plan/generate', {
+    const response = await fetch(`${API_BASE_URL}/api/study-plan/generate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import API_BASE_URL from '../../config';
 
 interface User {
   fullName: string;
@@ -61,7 +62,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       const token = localStorage.getItem("token");
       if (!token) return;
 
-      const response = await fetch("/api/subjects", {
+      const response = await fetch(`/${API_BASE_URL}/api/subjects`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -82,7 +83,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     password: string
   ): Promise<boolean> => {
     try {
-      const response = await fetch("/api/users/login", {
+      const response = await fetch(`/${API_BASE_URL}/api/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -113,7 +114,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     password: string
   ): Promise<boolean> => {
     try {
-      const response = await fetch("/api/users/register", {
+      const response = await fetch(`/${API_BASE_URL}/api/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -153,7 +154,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const addSubject = async (subjectData: Omit<Subject, "_id">) => {
     const token = localStorage.getItem("token");
 
-    const response = await fetch("/api/subjects", {
+    const response = await fetch(`/${API_BASE_URL}/api/subjects`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -178,7 +179,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   ) => {
     const token = localStorage.getItem("token");
 
-    const response = await fetch(`/api/subjects/${_id}`, {
+    const response = await fetch(`/${API_BASE_URL}/api/subjects/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -202,7 +203,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const removeSubject = async (_id: string) => {
     const token = localStorage.getItem("token");
 
-    const response = await fetch(`/api/subjects/${_id}`, {
+    const response = await fetch(`/${API_BASE_URL}/api/subjects/${_id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
